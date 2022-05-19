@@ -30,7 +30,7 @@ public class RedditCloneApplication {
 		SpringApplication.run(RedditCloneApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository) {
 		return args -> {
 			Link link = new Link("Getting started with clone of reddit", "https://redditClone");
