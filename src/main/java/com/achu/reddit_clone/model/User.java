@@ -35,6 +35,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Boolean enabled;
 
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -42,6 +44,17 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id")
     )
     private Set<Role> roles = new HashSet<>();
+
+
+    public void addRole(Role userRole) {
+        roles.add(userRole);
+    }
+
+
+    public void addRoles(Set<Role> roles) {
+        roles.forEach(this::addRole);
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -79,4 +92,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+
+
 }
